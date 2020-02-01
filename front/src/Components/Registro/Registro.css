@@ -1,0 +1,4 @@
+.modal-open {
+    overflow: unset;
+    padding-right: 0px !important;
+}
