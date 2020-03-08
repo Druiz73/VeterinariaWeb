@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
+import config from '../../../config/config';
 
 export default function ModalContaactosAdmin(props) {
     const [respuesta, setRespuesta] = useState('');
@@ -10,10 +11,10 @@ export default function ModalContaactosAdmin(props) {
     }
 
     var templateParams = {
-        nombre: props.consultas.nombre,
-        email: props.consultas.email,
-        motivo: props.consultas.motivo,
-        detalle: props.consultas.detalles,
+        nombre: props.consultaModal.nombre,
+        email: props.consultaModal.email,
+        motivo: props.consultaModal.motivo,
+        detalle: props.consultaModal.detalles,
         respuesta: respuesta
     }
 
@@ -23,7 +24,21 @@ export default function ModalContaactosAdmin(props) {
             emailjs.send('gmail', 'rc_vet_dev', templateParams, 'user_xNmjReQiAs114Qkpgf1t1')
                 .then(function (response) {
                     console.log('SUCCESS!', response.status, response.text);
-                    alert('Respuesta enviada !');
+                    //actualizar mongo como respuesta enviada a la respuesta
+
+                    fetch(`${config.apiUrl}/contact`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ id: props.consultaModal._id, respuesta: true })
+                    })
+                        .then(resp => resp.json())
+                        .then(data => {
+                        });
+
+                    alert('Respuesta enviada a!');
+
                 }, function (error) {
                     console.log('FAILED...', error);
                     alert('Error al enviar la respuesta !!');
@@ -38,12 +53,6 @@ export default function ModalContaactosAdmin(props) {
     return (
 
         <React.Fragment>
-
-            <button className="btn btn-outline-success ml-auto" data-placement="right"
-                data-toggle="modal" data-target="#exampleModal" id="btnAgregarNuevo" type="button">
-                Contestar
-               </button>
-
             <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
@@ -59,22 +68,22 @@ export default function ModalContaactosAdmin(props) {
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
                                         <label>Nombre Apellido Remitente</label>
-                                        <input readOnly type="text" className="form-control" value={props.consultas.nombre} name="nombre" id="nombre" placeholder="Nombre Apellido Remitente" />
+                                        <input readOnly type="text" className="form-control" value={props.consultaModal.nombre} name="nombre" id="nombre" placeholder="Nombre Apellido Remitente" />
                                     </div>
                                     <div className="form-group col-md-6">
                                         <label>Email Remitente</label>
-                                        <input readOnly type="text" className="form-control" value={props.consultas.email} name="email" id="email"
+                                        <input readOnly type="text" className="form-control" value={props.consultaModal.email} name="email" id="email"
                                             placeholder="remitente@dominio.com" />
                                     </div>
                                     <div className="form-group col-md-6">
                                         <label>Motivo</label>
-                                        <input readOnly type="text" className="form-control" value={props.consultas.motivo} name="motivo" id="motivo"
-                                            placeholder="Motivo Consulta" />
+                                        <input readOnly type="text" className="form-control" value={props.consultaModal.motivo} name="motivo" id="motivo"
+                                            placeholder="Motivo consulta" />
                                     </div>
                                     <div className="form-group col-md-6">
                                         <label>Detalle</label>
-                                        <input readOnly type="text" className="form-control" value={props.consultas.detalles} name="detalle" id="detalle"
-                                            placeholder="Detalle Consulta" />
+                                        <input readOnly type="text" className="form-control" value={props.consultaModal.detalles} name="detalle" id="detalle"
+                                            placeholder="Detalle consulta" />
                                     </div>
                                 </div>
                                 <div className="form-row">

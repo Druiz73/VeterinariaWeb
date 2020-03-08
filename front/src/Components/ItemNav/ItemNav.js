@@ -1,26 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './ItemNav.css';
-export default function ItemNav() {
+
+
+export default function ItemNav(props) {
+    const [items, setItems] = useState([])
+
+    useEffect(() => {
+        getCategorias();
+    }, [])
+
+    const getCategorias = (() => (
+        fetch("http://localhost:4000/categorias")
+            .then(resp => resp.json())
+            .then(data => {
+                setItems(data)
+            })
+    ))
+
+
 
     return (
-        
-            <nav id="navbar-example3" className="fixed-bottom size col-12 col-lg-2 navbar navbar-light bg-dark NavItem mt-3">
 
-                <nav className="nav flex-column">
-                    <h1 className="text-center text-white">Categorias</h1>
-                    <a className="nav-link text-muted font-weight-bold stretched-link" href="#item-1">Item 1</a>
-                    <nav className="nav flex-column">
-                        <a className="nav-link text-muted font-weight-bold stretched-link ml-3 my-1" href="#item-1-1">Item 1-1</a>
-                        <a className="nav-link text-muted font-weight-bold stretched-link ml-3 my-1" href="#item-1-2">Item 1-2</a>
-                    </nav>
-                    <a className="nav-link text-muted font-weight-bold stretched-link" href="#item-2">Item2</a>
-                    <a className="nav-link text-muted font-weight-bold stretched-link" href="#item-3">Item3</a>
-                    <nav className="nav flex-column">
-                        <a className="nav-link text-muted font-weight-bold stretched-link ml-3 my-1" href="#item-3-1">Item 3-1</a>
-                        <a className="nav-link text-muted font-weight-bold stretched-link ml-3 my-1" href="#item-3-2">Item 3-2</a>
-                    </nav>
-                </nav>
+        <nav id="navbar-example3" className="position-static size col-12 col-lg-2 navbar navbar-light backNav NavItem mt-3">
+            <nav className="nav flex-column">
+                <h3 className="text-center text-white marginSubir">Seccion de Productos</h3>
+                {items.map((element) => (
+                    <button className="nav-link text-white font-weight-bold bg-primary " onClick={()=>props.oneClick(element._id)}>{element.nombre}</button>
+                ))}
             </nav>
-        
+        </nav>
+
     )
 }

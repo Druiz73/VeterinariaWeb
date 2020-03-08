@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
+import config from '../../config/config';
 
 export default function FormPeluqueria() {
   const [peluqueria, setPeluqueria] = useState({
@@ -22,6 +23,27 @@ export default function FormPeluqueria() {
     })
     console.log(peluqueria)
   }
+  function turno(){
+    fetch(`${config.apiUrl}/turnos`, {
+      method: "POST",
+      headers:{
+        'Accept': 'aplication/json',
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify({
+        nombre: peluqueria.nombre,
+        raza: peluqueria.raza,
+        tamaño: peluqueria.tamaño
+      }),
+      
+    })
+    .then(res => res.json())
+    .then(data => {
+      setPeluqueria({
+        peluqueria: data
+      })
+    })
+  }
 
   return (<div className=" col-6 mx-auto " ><h1 className="mb-5 text-dark">Rellene el formulario</h1>
     <form className="mb-5" onSubmit={handleSubmit()}>
@@ -41,7 +63,7 @@ export default function FormPeluqueria() {
           <option value="grande">Grande (mayor a 6kg)</option>
         </select>
       </div>
-      <Link className="btn btn-warning mb-5" to='/thanks'> Enviar </Link>
+      <Link className="btn btn-raised btn-warning mb-5" to='/thanks' onClick={() => turno()}> Enviar </Link>
     </form>
   </div>
   )

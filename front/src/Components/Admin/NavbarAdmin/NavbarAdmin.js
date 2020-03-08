@@ -27,6 +27,12 @@ export default function NavBarAdmin() {
                         <li className="nav-item">
                             <Link className="nav-link" to={`${url}/ContactosAdmin`}>Contactos</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to={`${url}/CategoriasAdmin`}>Categorias</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to={`${url}/TurnosAdmin`}>Turnos</Link>
+                        </li>
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item active">

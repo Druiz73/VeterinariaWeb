@@ -1,41 +1,130 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import './Login.css';
 import {
     Link
 } from "react-router-dom";
+import Google from "./../../image/Google.svg";
+import Instagram from "./../../image/Instagram.svg";
+import Facebook from "./../../image/Facebook.svg";
 
 export default function Login() {
+
+    const [login, setLogin] = useState({
+        email: '',
+        password: ''
+    })
+
+    function handleInput(e) {
+        const name = e.target.name;
+        const value = e.target.value;
+        setLogin({
+            ...login,
+            [name]: value
+        })
+    }
+
+    function handleClick(e) {
+        e.preventDefault();
+        if (login.email === "" || login.password === "") {
+            alert("Debe ingresar ambos campos")
+        } else {
+            inicio(login.email, login.password);
+        }
+    }
+
+    function inicio(email, password) {
+        fetch("http://localhost:4000/user/login", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.error == "user does not exist") {
+                    alert("email y contraseña no coinciden")
+                }
+                else {
+                    localStorage.setItem('usertoken', data.token);
+                }
+            })
+    }
+
     return (
-            <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Logueate</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div className="modal-body">
-                            <form className="px-4 py-3">
-                                <div className="form-group">
-                                    <label for="exampleDropdownFormEmail1">Email</label>
-                                    <input type="email" className="form-control border-dark" id="exampleDropdownFormEmail1" placeholder="e-mail@ejemplo.com" />
+        <div className="container-fluid">
+            <div className="row bg-primary" >
+                <div className="col-6 mx-auto">
+                    <div class="card mb-3 mt-3">
+
+                        <h5 class="card-header info-color white-text text-center py-4">
+                            <strong>Login</strong>
+                        </h5>
+
+                        <div class="card-body px-lg-5 pt-0">
+
+
+                            <form class="text-center" action="#!">
+
+                                <div class="md-form mb-1">
+                                    <input type="email" id="materialLoginFormEmail" class="form-control" placeholder="Pon tu Correo" />
+                                    <label for="materialLoginFormEmail">E-mail</label>
                                 </div>
-                                <div className="form-group">
-                                    <label for="exampleDropdownFormPassword1">Contraseña</label>
-                                    <input type="password" className="form-control border-dark" id="exampleDropdownFormPassword1" placeholder="Contraseña" />
+
+
+                                <div class="md-form">
+                                    <input type="password" id="materialLoginFormPassword" class="form-control" placeholder="Pon tu Contraseña" />
+                                    <label for="materialLoginFormPassword">Contraseña</label>
                                 </div>
-                                <div className="d-flex justify-content-end">
-                                    <Link type="submit" className="btn btn-primary border-dark" to="/usuario">Ingresar</Link>
+
+                                <div class="d-flex justify-content-around">
+                                    <div>
+
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="materialLoginFormRemember" />
+                                            <label class="form-check-label" for="materialLoginFormRemember">Recordarme</label>
+                                        </div>
+                                    </div>
+                                    <div>
+
+                                        <a className="text-white btn btn-raised btn-primary mx-1" href="">Olvidaste tu contraseña?</a>
+                                    </div>
                                 </div>
+
+
+                                <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Ingresar</button>
+
+
+                                <p>Aun no eres miembro?
+        <Link className="text-white btn btn-raised btn-primary mx-1" to="/registro">Registrate!</Link>
+                                </p>
+
+
+                                <p>O ingresa con!</p>
+                                <a type="button" class="btn-floating btn-fb btn-sm">
+                                <img className="imgLogo" src={Facebook} />
+                                </a>
+                                <a type="button" class="btn-floating btn-tw btn-sm">
+                                <img className="imgLogo" src={Instagram} />
+                                </a>
+                                <a type="button" class="btn-floating btn-li btn-sm">
+                                <img className="imgLogo" src={Google} />
+                                </a>
+                              
+
                             </form>
-                            <div className="dropdown-divider"></div>
-                            <div className="reg d-flex justify-content-around">
-                                <Link className="btn" to="/registro">Aun no estas registrado?</Link>
-                                <Link className="btn" to="/contrasenia">Olvide mi contraseña?</Link>
-                            </div>
+
+
                         </div>
+
                     </div>
                 </div>
+
             </div>
+        </div>
     )
 }

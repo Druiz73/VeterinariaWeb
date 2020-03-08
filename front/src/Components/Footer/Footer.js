@@ -10,7 +10,7 @@ export default class Footer extends React.Component {
     return (
       <div className="bg-dark">
         <footer className="bg-dark container">
-          <h5 className="text-center text-white mb-3">Veterinary Clinic</h5>
+          <h5 className="text-center text-white pt-3">Veterinary Clinic</h5>
           <div className="container">
             <div className="row">
               <div className="col-12 col-lg-4 text-center my-lg-auto">
@@ -29,17 +29,17 @@ export default class Footer extends React.Component {
               </div>
               <div className="col-12 col-lg-4 text-center my-3 my-lg-auto">
                 <ul className="list-group list-group-horizontal ml-5 mx-auto">
-                  <li className="mx-auto">
+                  <li className="mx-auto mb-2">
                     <a href="#!">
                       <img className="imgLogo" src={Google} />
                     </a>
                   </li>
-                  <li className="mx-auto">
+                  <li className="mx-auto mb-2">
                     <a href="#!">
                       <img className="imgLogo" src={Instagram} />
                     </a>
                   </li>
-                  <li className="mx-auto">
+                  <li className="mx-auto mb-2">
                     <a href="#!">
                       <img className="imgLogo" src={Facebook} />
                     </a>

@@ -1,16 +1,20 @@
-.NavItem{
-    height: 25%;
-}
-.backgroundNavbar {
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgb(4, 118, 144) 100%);
-}
-.size{
-    height: 500px;
+.NavItem {
+    height: 25%
 }
 
-@media screen and (max-width:700px){
-    .NavItem{
-        display: none;
+.backNav {
+    background-color:#466C95;
+}
+
+.size {
+    height: 600px
+}
+.marginSubir {
+    margin-bottom: 350px;
+}
+
+@media screen and (max-width:700px) {
+    .NavItem {
+        display: none
     }
 }

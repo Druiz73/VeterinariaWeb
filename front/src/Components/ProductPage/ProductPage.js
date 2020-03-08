@@ -1,59 +1,78 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import img from '../../image/img-ejemplo-product.jpg';
 import medios from '../../image/Formas-de-pago-Mercado-Pago2.jpg';
+import { Redirect, useParams } from "react-router-dom";
+import config from '../../config/config';
+
 
 export default function ProductPage(props) {
-    
-    const [venta, setVenta] = useState({
-        articulos: JSON.parse(localStorage.getItem('articulos')) || [],
-    })
+    const products = JSON.parse(localStorage.getItem('articulos')) || [];
+    const [product, setProduct] = useState({});
+    const [imagen, setImagen] = useState('');
+    const [cantidad, setCantidad] = useState(1);
+    const [redirectCarrito, setRedirectCarrito] = useState(false);
+    let id = useParams().id;
 
-  function handleButton(e) {
-        const name = e.target.name;
-        const value = e.target.value;
-        setVenta({
-            ...venta,
-            [name]: value
+    useEffect(() => {
+        fetch(`${config.apiUrl}/producto/cart/${id}`) 
+            
+            .then(function (response) {
+                return response.json()
+            })
+            .then(data => {
+               var imagen = data.imageUrl[0].base64;
+                setImagen(imagen);
+                setProduct(data);
         })
-        let arrayCompleto = venta.articulos;
-        if (document.getElementsByTagName('input')[0].value > 0){
-        arrayCompleto.push({
-            producto: "hola",
-            descripcion: "hola",
-            precio: 52,
-            cantidad: document.getElementsByTagName('input')[0].value,
-            url: "https://cdn.shopify.com/s/files/1/0185/9786/products/25203-HoopieCollar-RedButte-WEB_1024x1024_d6b98a18-6af4-4252-8a88-5f1a9526ffb5.jpg?v=1527393648"
-        })} else {alert("INGRESE CANTIDAD")};
-        localStorage.setItem('articulos', JSON.stringify(arrayCompleto))
-        setVenta({ articulos: arrayCompleto })
-        props.setear(arrayCompleto.length)
+    }, {})    
+    
+    function handleButton() {
+        if (cantidad >= 1){
+            products.push({ ...product, cantidad})
+            localStorage.setItem('articulos', JSON.stringify(products))
+            setProduct({ products: product})
+            props.setear(products.length);
+            setRedirectCarrito(true);
+        } else { 
+            window.confirm("INGRESE CANTIDAD CORRECTA");
+        } 
     }
 
-    return (
-        <div>
-            <h2 className="text-center"><strong>Titulo Producto</strong></h2>
-            <div className="container">
-                <div className="row">
-                    <div className="col-12 col-md-6 text-center my-auto">
-                        <img className="img-thumbnail mt-5" src={img} />
-                    </div>
-                    <div className="col-12 col-md-6 text-center">
-                        <h3 className="text-center mt-5 row-4">Precio: "2500"</h3>
-                        <hr></hr>
-                        <p>Medios de pago</p>
-                        <img src={medios} className="img-fluid" />
-                        <hr></hr>
-                        <p>Caracteristicas</p>
-                        <hr></hr>
-                        <label className="mr-2">Cantidad: </label>
-                        <input className="col-2" type="number"></input>
-                        <hr></hr>
-                        <div className="text-center">
-                        <button className="btn btn-warning mx-auto mb-5" onClick={(e) => handleButton(e)}>Comprar</button>
+    function cambiarCant(e) {
+        let value = e.target.value;
+        setCantidad(value)
+    }
+        
+    if(redirectCarrito){
+        return <Redirect to="/ventas" /> 
+    } else {
+        return (
+            <div>
+                <h2 className="text-center"><strong>{product.detalle}</strong></h2>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12 col-md-6 text-center my-auto">
+                            <img className="img-fluid mt-5" src={imagen}   />
+                        </div>
+                        <div className="col-12 col-md-6 text-center">
+                            <h3 className="text-center mt-5 row-4">Precio: $ {product.precio}</h3>
+                            <hr></hr>
+                            <p>Medios de pago</p>
+                            <img src={medios} className="img-fluid" />
+                            <hr></hr>
+                            <p>Caracteristicas</p>
+                            <hr></hr>
+                            <label className="mr-2">Cantidad: </label>
+                            <input className="col-2" name="cantidad" type="number" value={cantidad} onChange={(e) => cambiarCant(e)}/>
+                            <hr></hr>
+                            <div className="text-center">
+                            <button className="btn btn-raised btn-warning mx-auto mb-5" onClick={() => handleButton()}>Comprar</button>
+                            </div> 
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
+    
 }

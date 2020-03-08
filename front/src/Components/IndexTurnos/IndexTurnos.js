@@ -37,20 +37,21 @@ export default function IndexTurnos(props) {
     }
 
 
-    return (<div className="container t-1">
+    return (
+    <div className="container t-1 mt-3">
         <div className="row">
             <div className="card col-6" id="peluqueria">
                 <img src={peluqueria} className="card-img-top img-fluid" alt="" />
                 <div className="card-body text-center">
                     <h5 className="card-title">Turnos para Peluqueria</h5>
-                    <Link className="btn btn-warning" to="/peluqueria">Seleccionar</Link>
+                    <Link className="btn btn-raised btn-warning" to="/peluqueria">Seleccionar</Link>
                 </div>
             </div>
             <div className="card col-6" id="veterinaria" >
                 <img src={veterinaria} className="card-img-top img-fluid" alt="..." />
                 <div className="card-body text-center">
                     <h5 className="card-title">Turnos para consultas Veterinaria</h5>
-                    <Link className="btn btn-warning" to="/consulta">Seleccionar</Link>
+                    <Link className="btn btn-raised btn-warning" to="/consulta">Seleccionar</Link>
                 </div>
             </div>
         </div>

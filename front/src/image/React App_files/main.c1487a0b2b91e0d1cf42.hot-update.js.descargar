@@ -1,0 +1,253 @@
+webpackHotUpdate("main",{
+
+/***/ "./src/Components/Home/Header/Header.js":
+/*!**********************************************!*\
+  !*** ./src/Components/Home/Header/Header.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Header; });
+/* harmony import */ var C_Users_david_Desktop_Ecommerce_Ecommerce_Origen_front_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2 */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var C_Users_david_Desktop_Ecommerce_Ecommerce_Origen_front_node_modules_babel_runtime_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var _imgs_shopping_cart_symbol_for_e_commerce_icon_icons_com_56124_png__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../imgs/shopping-cart-symbol-for-e-commerce_icon-icons.com_56124.png */ "./src/Components/imgs/shopping-cart-symbol-for-e-commerce_icon-icons.com_56124.png");
+/* harmony import */ var _imgs_shopping_cart_symbol_for_e_commerce_icon_icons_com_56124_png__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_imgs_shopping_cart_symbol_for_e_commerce_icon_icons_com_56124_png__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _NavbarCat__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./NavbarCat */ "./src/Components/Home/Header/NavbarCat.js");
+/* harmony import */ var _header_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./header.css */ "./src/Components/Home/Header/header.css");
+/* harmony import */ var _header_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_header_css__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _imgs_Jokker_2_png__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../imgs/Jokker 2.png */ "./src/Components/imgs/Jokker 2.png");
+/* harmony import */ var _imgs_Jokker_2_png__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_imgs_Jokker_2_png__WEBPACK_IMPORTED_MODULE_8__);
+
+
+var _jsxFileName = "C:\\Users\\david\\Desktop\\Ecommerce\\Ecommerce-Origen\\front\\src\\Components\\Home\\Header\\Header.js";
+
+
+
+
+
+
+
+function Header(props) {
+  const _useState = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])({
+    isOpen: false,
+    search: "",
+    product: [],
+    log: false,
+    nombre: ""
+  }),
+        _useState2 = Object(C_Users_david_Desktop_Ecommerce_Ecommerce_Origen_front_node_modules_babel_runtime_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_1__["default"])(_useState, 2),
+        state = _useState2[0],
+        setstate = _useState2[1];
+
+  function handleInput(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+    setstate(Object(C_Users_david_Desktop_Ecommerce_Ecommerce_Origen_front_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
+      [name]: value
+    }));
+  }
+
+  const query = `?=${state.search}`;
+
+  const logOut = () => {
+    localStorage.clear("usertoken");
+  };
+
+  const toggle = () => setstate(!state.isOpen);
+
+  console.log(props.cartLength);
+  return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: "container-fluid border-bottom border-dark h-5",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 55
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: "row",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 57
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: "col-12 bg-dark h-5 d-flex justify-content-between",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 58
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: "col-3 text-white d-flex bd-highlight",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 59
+    },
+    __self: this
+  }, props.log.log ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("a", {
+    href: "/",
+    onClick: () => logOut(),
+    className: "text-white flex-fill bd-highlight my-auto",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 60
+    },
+    __self: this
+  }, "Cerrar sesion") : react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+    to: "/register",
+    className: "text-white flex-fill bd-highlight my-auto",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 61
+    },
+    __self: this
+  }, "Crear Cuenta")), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: "col-10 col-md-6 col-lg-4 pr-0 d-flex bd-highlight mr-lg-5",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 63
+    },
+    __self: this
+  }, props.log.log ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h5", {
+    className: "text-white text-center mx-sm-auto mx-lg-auto p-2 flex-fill bd-highlight border-right border-white",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 64
+    },
+    __self: this
+  }, "Bienvenido ", props.log.firstName.toUpperCase(), " ", props.log.lastName.toUpperCase(), " ") : react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+    to: "/login",
+    className: "text-white text-center mx-sm-auto  mx-lg-auto p-2 flex-fill bd-highlight border-right border-white",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 65
+    },
+    __self: this
+  }, "Iniciar Sesi\xF3n "), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+    onClick: valor => props.getTipoVenta("mayorista"),
+    className: "text-white text-center mx-sm-auto mx-lg-auto p-2 flex-fill bd-highlight border-right border-white",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 67
+    },
+    __self: this
+  }, "Mayorista "), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+    onClick: valor => props.getTipoVenta("minorista"),
+    className: "text-white text-center mx-sm-auto mx-lg-auto p-2 flex-fill bd-highlight",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 68
+    },
+    __self: this
+  }, "Minorista"))), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("nav", {
+    class: "navbar navbar-expand-lg navbar-light bg-light col-lg-12",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 71
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
+    class: "navbar-toggler",
+    type: "button",
+    "data-toggle": "collapse",
+    "data-target": "#navbarTogglerDemo01",
+    "aria-controls": "navbarTogglerDemo01",
+    "aria-expanded": "false",
+    "aria-label": "Toggle navigation",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 72
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", {
+    class: "navbar-toggler-icon",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 73
+    },
+    __self: this
+  })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    class: "collapse navbar-collapse",
+    id: "navbarTogglerDemo01",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 75
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("a", {
+    class: "navbar-brand",
+    className: "col-2",
+    href: "#",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 76
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+    to: "/",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 77
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("img", {
+    className: "img-fluid ",
+    src: _imgs_Jokker_2_png__WEBPACK_IMPORTED_MODULE_8___default.a,
+    width: "120",
+    height: "120",
+    alt: "",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 77
+    },
+    __self: this
+  }), " ")), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: "col-lg-8",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 79
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_NavbarCat__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    categories: props.categories,
+    getById: id => props.getById(id),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 80
+    },
+    __self: this
+  })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+    to: "/cart",
+    className: "col-2",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 82
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("img", {
+    src: _imgs_shopping_cart_symbol_for_e_commerce_icon_icons_com_56124_png__WEBPACK_IMPORTED_MODULE_5___default.a,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 84
+    },
+    __self: this
+  }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", {
+    class: "badge badge-danger rounded-circle",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 85
+    },
+    __self: this
+  }, props.cartLength))))));
+}
+
+/***/ })
+
+})
+//# sourceMappingURL=main.c1487a0b2b91e0d1cf42.hot-update.js.map

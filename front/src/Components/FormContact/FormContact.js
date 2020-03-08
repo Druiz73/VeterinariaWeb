@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
+import config from '../../config/config';
 
 
 export default function FormContact() {
@@ -13,7 +14,7 @@ export default function FormContact() {
     function handleInput(e) {
 
         const { name, value } = e.target;//destructurin de los valores enviados por el metodo onchange de cada input
-        let regex = new RegExp("^[ñíóáéú a-zA-Z /@/ /./]+$");
+        let regex = new RegExp("^[ñíóáéú a-zA-Z0-9 /@/ /./]+$");
         for (let i = 0; i <= value.length - 1; i++) {
             let letra = value[i]
             if (!regex.test(letra) || !letra === " ") {
@@ -27,7 +28,7 @@ export default function FormContact() {
     }
     
     function save() {
-        fetch("http://localhost:3001/contact/create", {
+        fetch(`${config.apiUrl}/contact/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -50,7 +51,7 @@ export default function FormContact() {
     return (
 
         <div>
-            <h2 className=" text-warning mb-5">Contacto</h2>
+            <h4 className=" text-center mb-5">Dejanos tu Consulta!</h4>
             <form className="col-8 text-center mx-auto">
                 <div className="form-group">
                     <label htmlFor="nombre" className="text-center">Nombre y apellido</label>
@@ -68,7 +69,7 @@ export default function FormContact() {
                     <label htmlFor="detalles" className="text-center">Detalles</label>
                     <textarea className="form-control" value={consulta.detalles} onChange={(e) => handleInput(e)} name="detalles" id="detalles" rows="3" required></textarea>
                 </div>
-                <Link className="btn btn-warning mb-5" onClick={()=>save()} to='/thanks'> Enviar </Link>
+                <Link className="btn btn-raised btn-warning mb-5" onClick={()=>save()} to='/thanks'> Enviar </Link>
             </form>
         </div>
     )

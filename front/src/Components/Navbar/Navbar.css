@@ -11,3 +11,61 @@ span {
     top: -15px;
     position: relative;
 }
+/*esto es solo el NAV*/
+
+  .nav-wrapper-4 {
+    background-color:#466C95;
+  }
+  
+  nav {
+    position: relative;
+  }
+ 
+  ul {
+    list-style-type: none;
+    
+    position: relative;
+  }
+  
+  li {
+    margin: 0 15px;
+  
+    position: relative;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  .effect-4 a:before {
+    content: "[";
+    left: -5px;
+  }
+  
+  .effect-4 a:after {
+    content: "]";
+    right: -5px;
+  }
+  
+  .effect-4 a:before,
+  .effect-4 a:after {
+    
+    opacity: 0;
+    color: #fff;
+    top: -1px;
+    transition: all .5s;
+  }
+  
+  .effect-4 a:hover:before,
+  .effect-4 a:hover:after {
+    opacity: 0.7;
+  }
+  
+  .effect-4 a:hover:before {
+    left: -20px;
+  }
+  
+  .effect-4 a:hover:after {
+    right: -20px;
+  }
